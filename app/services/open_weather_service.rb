@@ -1,5 +1,4 @@
 class OpenWeatherService
-
   def get_forecast(location)
     resp = conn.get('onecall') do |req|
       req.params['lat'] = location.lat_lng[:lat]

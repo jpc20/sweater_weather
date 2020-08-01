@@ -1,5 +1,4 @@
 class MapQuestService
-
   def get_coordinates(location)
     resp = conn.get do |req|
       req.params['location'] = location
