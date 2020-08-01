@@ -10,6 +10,7 @@ class Location
     location_data[:results].first[:locations].first[:adminArea5] +
     ', ' +
     location_data[:results].first[:locations].first[:adminArea3] +
-    ' ' + location_data[:results].first[:locations].first[:adminArea1]
+    ' ' +
+    location_data[:results].first[:locations].first[:adminArea1]
   end
 end
