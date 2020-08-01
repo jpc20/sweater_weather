@@ -13,6 +13,7 @@ gem 'fast_jsonapi'
 gem 'jsonapi-rails'
 gem 'faker'
 gem 'figaro'
+gem 'faraday'
 gem 'simplecov', require: false, group: :test
 
 group :development, :test do

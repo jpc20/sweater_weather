@@ -1,7 +1,7 @@
 class MapQuestService
 
   def get_coordinates(location)
-
+  
   end
 
   private
