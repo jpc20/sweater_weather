@@ -4,7 +4,7 @@ class MapQuestService
     resp = conn.get do |req|
       req.params['location'] = location
     end
-    JSON.parse(resp.body)
+    JSON.parse(resp.body, symbolize_names: true)
   end
 
   private
