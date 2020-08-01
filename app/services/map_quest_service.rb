@@ -7,8 +7,8 @@ class MapQuestService
   private
 
   def conn
-    gsFaraday.new('http://www.mapquestapi.com/directions/v2/route') do |f|
-    gs  f.params['key'] = ENV['MAPQUEST_API_KEY']
-    gsend
+    Faraday.new('http://www.mapquestapi.com/directions/v2/route') do |f|
+      f.params['key'] = ENV['MAPQUEST_API_KEY']
+    end
   end
 end
