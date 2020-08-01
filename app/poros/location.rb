@@ -2,7 +2,7 @@ class Location
   attr_reader :name, :lat_lng
   def initialize(location_data)
     @name = format_name(location_data)
-    @lat_lng = map_quest_resp[:results].first[:locations].first[:latLng]
+    @lat_lng = location_data[:results].first[:locations].first[:latLng]
   end
 
   private

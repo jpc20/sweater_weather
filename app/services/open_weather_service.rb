@@ -1,9 +1,9 @@
 class OpenWeatherService
 
-  def get_forecast(lat_lng)
+  def get_forecast(location)
     resp = conn.get('onecall') do |req|
-      req.params['lat'] = lat_lng[:lat]
-      req.params['lon'] = lat_lng[:lng]
+      req.params['lat'] = location.lat_lng[:lat]
+      req.params['lon'] = location.lat_lng[:lng]
       req.params['exclude'] = 'minutely'
     end
     JSON.parse(resp.body, symbolize_names: true)
