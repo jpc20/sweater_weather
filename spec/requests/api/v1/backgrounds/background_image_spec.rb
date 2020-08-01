@@ -6,6 +6,5 @@ describe 'The backgrounds endpoint' do
 
     expect(response).to be_successful
     expect(response.status).to eq(200)
-    
   end
 end
