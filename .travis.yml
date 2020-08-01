@@ -1,0 +1,19 @@
+before_install:
+  - gem install bundler
+langauge: ruby
+rbenv:
+  - 2.5.3
+addons:
+postgresql: 9.6
+chrome: stable
+dist: xenial
+script:
+  - yarn
+  - bundle exec rails db:{create,migrate} RAILS_ENV=test
+  - bundle exec rspec
+deploy:
+  provider: heroku
+  api_key:
+    secure: eVvh43F7EdfugshCwyeP2trOVyCC9j2CXjYWW0L+uhLXVZzH3CmcFSNBRtP/Xd0zBljddwR333rxEbm6VMVqsGNzIsN7rVES+PENyqJmpVyWFPaQy9x1cGVzvWBgCL2aMXSXnKfvCnQdswVxe8MPnk1DXm4Jp4JySojuSaczLYgrW1CsIy+LCIMyXuerHn6CWuKlNk04i+9jzOrX0DRTVH8+jCT6UPTq1d3jthNJhQPiK2wyCDkVZPUSB9hwwwI1kOii09Z/xP0uFH6UGno7DCVtQJXGY6ZIUAOtQyi84nLAgqyUyk8VlLIb51NxHtpXnR7IqfBzWyaUZad3Y90Z02JOrH4QSUZZAZO/HKu/YEsfQzkopuKIrcqzimuwNLovbwLXsWfANv6iYC4FrEXKCKcJm+91uhqNb2KWHgzs6E51Um+klHi2H83KyuNS+encfVS7bP0rh98CzRx8s9BTBOoNWXa+ET1QFM+14ISe/2CpkRg+kTz/6YtLMezUaZSOGSCXTwQgIc9a1xiKAvTtR43uhMFd5zIWnnZA4wn8cun7kJIHLn/aURQmEtpj8ezzF0TOYw6mViLy9PfayLvgzaYdMBNvs0j4EKQtyxhJNWrqQ5YCnRGIv1+HT/yKCYy9HHOk2yxSriE0mu46Yo08OTiotTmH/2/z6wC2/g6SRjY=
+  app: sweater-weather-jpc20
+  run: rails db:migrate
