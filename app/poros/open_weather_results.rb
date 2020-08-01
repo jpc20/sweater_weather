@@ -1,8 +1,6 @@
 class OpenWeatherResults
-  def get_forcast(lat_lng)
-    weather_data = OpenWeatherService.new.get_forcast(lat_lng)
-    weather_data[:list].map do |data|
-      Forecast.new(data)
-    end
+  def get_forecast(lat_lng)
+    weather_data = OpenWeatherService.new.get_forecast(lat_lng)
+    Forecast.new(weather_data)
   end
 end

@@ -1,9 +1,10 @@
 class OpenWeatherService
 
-  def get_forcast(lat_lng)
-    resp = conn.get do |req|
+  def get_forecast(lat_lng)
+    resp = conn.get('onecall') do |req|
       req.params['lat'] = lat_lng[:lat]
       req.params['lon'] = lat_lng[:lng]
+      req.params['exclude'] = 'minutely'
     end
     JSON.parse(resp.body, symbolize_names: true)
   end
@@ -11,7 +12,7 @@ class OpenWeatherService
   private
 
   def conn
-    Faraday.new('http://api.openweathermap.org/data/2.5/forecast') do |faraday|
+    Faraday.new('http://api.openweathermap.org/data/2.5/') do |faraday|
       faraday.params['appid'] = ENV['OPEN_WEATHER_API_KEY']
       faraday.params['units'] = 'imperial'
     end
