@@ -16,10 +16,11 @@ describe 'Road trip endpoint' do
     expect(response).to be_successful
     expect(response.status).to eq(200)
 
-    user_response = JSON.parse(response.body, symbolize_names: true)
-    expect(user_response[:data][:type]).to eq('users')
-    expect(user_response[:data][:id]).to eq(user.id.to_s)
-    expect(user_response[:data][:attributes][:email]).to eq(user.email)
-    expect(user_response[:data][:attributes][:api_key]).to eq(user.api_key)
+    road_trip = JSON.parse(response.body, symbolize_names: true)
+    expect(road_trip[:data][:type]).to eq('road_trip')
+    expect(road_trip[:data][:attributes]).to have_key([:origin])
+    expect(road_trip[:data][:attributes]).to have_key([:destination])
+    expect(road_trip[:data][:attributes]).to have_key([:travel_time])
+    expect(road_trip[:data][:attributes]).to have_key([:forecast])
   end
 end
