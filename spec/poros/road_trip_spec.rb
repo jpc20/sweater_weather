@@ -11,6 +11,6 @@ describe 'RoadTrip PORO' do
     expect(road_trip.origin).to eq 'Denver, CO'
     expect(road_trip.destination).to eq 'Pueblo, CO'
     expect(road_trip.travel_time).to be
-    expect(road_trip.forecast).to be
+    expect(road_trip.arrival_forecast).to be
   end
 end

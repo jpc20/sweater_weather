@@ -19,10 +19,10 @@ describe 'Road trip endpoint' do
     road_trip = JSON.parse(response.body, symbolize_names: true)
 
     expect(road_trip[:data][:type]).to eq('road_trip')
-    require "pry"; binding.pry
-    expect(road_trip[:data][:attributes]).to have_key([:origin])
-    expect(road_trip[:data][:attributes]).to have_key([:destination])
-    expect(road_trip[:data][:attributes]).to have_key([:travel_time])
-    expect(road_trip[:data][:attributes]).to have_key([:forecast])
+
+    expect(road_trip[:data][:attributes]).to have_key(:origin)
+    expect(road_trip[:data][:attributes]).to have_key(:destination)
+    expect(road_trip[:data][:attributes]).to have_key(:travel_time)
+    expect(road_trip[:data][:attributes]).to have_key(:arrival_forecast)
   end
 end
