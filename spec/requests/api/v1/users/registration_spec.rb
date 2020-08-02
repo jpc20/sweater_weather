@@ -27,7 +27,6 @@ describe 'users endpoint' do
                   }
     post '/api/v1/users', params: user_params
 
-    expect(response).to_not be_successful
     expect(response.status).to eq(400)
 
     failed_response = JSON.parse(response.body, symbolize_names: true)
