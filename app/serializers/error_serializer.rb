@@ -5,9 +5,7 @@ class ErrorSerializer
         {
           id: nil,
           type:"error",
-          attributes: {
-            error_message: user.errors.full_messages.to_sentence
-          }
+          error_message: user.errors.full_messages.to_sentence
         }
     }
   end

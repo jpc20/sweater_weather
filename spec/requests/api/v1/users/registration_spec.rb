@@ -19,7 +19,7 @@ describe 'users endpoint' do
     expect(user_response[:data][:attributes]).to have_key(:api_key)
   end
 
-  it 'returns a 400 and description of failure' do
+  it 'returns a 400 and description of failure for password_confirmation not matching' do
     user_params = {
                     "email": "whatever@example.com",
                     "password": "password",
@@ -29,6 +29,39 @@ describe 'users endpoint' do
 
     expect(response.status).to eq(400)
 
-    failed_response = JSON.parse(response.body, symbolize_names: true)
+    error_response = JSON.parse(response.body, symbolize_names: true)
+    expect(error_response[:data][:type]).to eq('error')
+    expect(error_response[:data][:error_message]).to eq("Password confirmation doesn't match Password")
+  end
+
+  it 'returns a 400 and description of failure for email being taken' do
+    create(:user, email: "whatever@example.com")
+    user_params = {
+                    "email": "whatever@example.com",
+                    "password": "password",
+                    "password_confirmation": "password"
+                  }
+    post '/api/v1/users', params: user_params
+
+    expect(response.status).to eq(400)
+
+    error_response = JSON.parse(response.body, symbolize_names: true)
+    expect(error_response[:data][:type]).to eq('error')
+    expect(error_response[:data][:error_message]).to eq("Email has already been taken")
+  end
+
+  it 'returns a 400 and description of failure for missing fields' do
+    user_params = {
+                    "email": "",
+                    "password": "password",
+                    "password_confirmation": "password"
+                  }
+    post '/api/v1/users', params: user_params
+
+    expect(response.status).to eq(400)
+
+    error_response = JSON.parse(response.body, symbolize_names: true)
+    expect(error_response[:data][:type]).to eq('error')
+    expect(error_response[:data][:error_message]).to eq("Email can't be blank")
   end
 end
