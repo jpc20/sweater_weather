@@ -5,6 +5,6 @@ class MapQuestResults
   end
 
   def directions(from_to)
-    map_quest_resp = MapQuestService.new.directions(from_to)
+    MapQuestService.new.directions(from_to)
   end
 end
