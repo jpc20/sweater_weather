@@ -1,7 +1,7 @@
 class UnsplashService
   def get_image(location)
     resp = conn.get do |req|
-      req.params['query'] = location
+      req.params['query'] = location.split(',')[0]
       req.params['count'] = 1
     end
     JSON.parse(resp.body, symbolize_names: true)
