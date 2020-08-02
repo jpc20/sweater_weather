@@ -4,7 +4,6 @@ class Api::V1::RoadTripController < ApplicationController
     location = MapQuestResults.new.get_coordinates(from_to[:destination])
     forecast = OpenWeatherResults.new.get_forecast(location)
     road_trip = RoadTrip.new(from_to, directions, forecast)
-    require "pry"; binding.pry
     render json: RoadTripSerializer.new(road_trip)
   end
 
