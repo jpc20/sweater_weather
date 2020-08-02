@@ -19,5 +19,19 @@ describe 'users login endpoint' do
     expect(user_response[:data][:attributes][:api_key]).to eq(user.api_key)
   end
 
+  it 'returns a 400 if it fails to authenticate' do
+    user = create(:user, password: '12345')
+    user_params = {
+                    "email": user.email,
+                    "password": "wrong_password",
+                  }
+    post '/api/v1/sessions', params: user_params
 
+    expect(response).to_not be_successful
+    expect(response.status).to eq(400)
+
+    error_response = JSON.parse(response.body, symbolize_names: true)
+    expect(error_response[:data][:type]).to eq('error')
+    expect(error_response[:data][:error_message]).to eq("Credentials are bad")
+  end
 end
