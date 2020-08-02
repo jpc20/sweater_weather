@@ -14,7 +14,7 @@ describe 'users login endpoint' do
 
     user_response = JSON.parse(response.body, symbolize_names: true)
     expect(user_response[:data][:type]).to eq('users')
-    expect(user_response[:data][:id]).to eq(user.id)
+    expect(user_response[:data][:id]).to eq(user.id.to_s)
     expect(user_response[:data][:attributes][:email]).to eq(user.email)
     expect(user_response[:data][:attributes][:api_key]).to eq(user.api_key)
   end
