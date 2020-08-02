@@ -13,7 +13,6 @@ describe 'users endpoint' do
     expect(response.status).to eq(201)
 
     user_response = JSON.parse(response.body, symbolize_names: true)
-
     expect(user_response[:data][:type]).to eq('users')
     expect(user_response[:data]).to have_key(:id)
     expect(user_response[:data][:attributes]).to have_key(:email)
