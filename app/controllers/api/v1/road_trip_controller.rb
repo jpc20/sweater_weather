@@ -1,6 +1,6 @@
 class Api::V1::RoadTripController < ApplicationController
   def create
-    user = User.find_by(api_key: params[:body][:api_key])
+    user = User.find_by(api_key)
     if user
       directions = MapQuestResults.new.directions(from_to)
       location = MapQuestResults.new.get_coordinates(from_to[:destination])
@@ -13,7 +13,12 @@ class Api::V1::RoadTripController < ApplicationController
   end
 
   private
+
   def from_to
-    params.require(:body).permit(:origin, :destination)
+    JSON.parse(request.body.read, symbolize_names: true).without(:api_key)
+  end
+
+  def api_key
+    JSON.parse(request.body.read, symbolize_names: true).slice(:api_key)
   end
 end

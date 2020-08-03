@@ -4,14 +4,11 @@ describe 'Road trip endpoint' do
   it 'returns the origin, destination, travel time, and destination forecast' do
     user = create(:user)
     road_trip_body = {
-                        body:
-                        {
                           "origin": "Denver, CO",
                           "destination": "Pueblo, CO",
                           "api_key": user.api_key
-                        }
                       }
-    post '/api/v1/road_trip', params: road_trip_body
+    post '/api/v1/road_trip', params: road_trip_body.to_json, headers: { "CONTENT_TYPE" => "application/json" }
 
     expect(response).to be_successful
     expect(response.status).to eq(200)
@@ -28,13 +25,10 @@ describe 'Road trip endpoint' do
 
   it 'returns a 401 if no API key is sent' do
     road_trip_body = {
-                        body:
-                        {
                           "origin": "Denver, CO",
                           "destination": "Pueblo, CO",
-                        }
                       }
-    post '/api/v1/road_trip', params: road_trip_body
+    post '/api/v1/road_trip', params: road_trip_body.to_json, headers: { "CONTENT_TYPE" => "application/json" }
 
     expect(response).to_not be_successful
     expect(response.status).to eq(401)
