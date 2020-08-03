@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Forecast PORO' do
-  it 'has a location, current, hourly, and daily' do
+  it 'has a location, current, hourly, and daily', :vcr do
     location = MapQuestResults.new.get_coordinates('denver,co')
     forecast = OpenWeatherResults.new.get_forecast(location)
     expect(forecast.location).to eq('Denver, CO US')

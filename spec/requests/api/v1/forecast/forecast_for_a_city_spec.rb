@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'The forcast endpoint' do
-  it 'retuns the weather for a city' do
+  it 'retuns the weather for a city', :vcr do
     get '/api/v1/forecast', params: {location: 'denver,co'}
 
     expect(response).to be_successful
@@ -16,7 +16,7 @@ describe 'The forcast endpoint' do
     expect(forecast[:data][:attributes]).to have_key(:daily)
   end
 
-  it 'retuns the weather for a different city' do
+  it 'retuns the weather for a different city', :vcr do
     get '/api/v1/forecast', params: {location: 'San Francisco'}
 
     expect(response).to be_successful

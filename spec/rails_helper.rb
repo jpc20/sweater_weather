@@ -28,6 +28,16 @@ RSpec.configure do |config|
 
 end
 
+VCR.configure do |config|
+  config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
+  config.hook_into :webmock
+  config.filter_sensitive_data('<MAPQUEST_API_KEY>') { ENV['MAPQUEST_API_KEY'] }
+  config.filter_sensitive_data('<OPEN_WEATHER_API_KEY>') { ENV['OPEN_WEATHER_API_KEY'] }
+  config.filter_sensitive_data('<UNSPLASH_ID>') { ENV['UNSPLASH_ID'] }
+  config.filter_sensitive_data('<HIKING_PROJECT_KEY>') { ENV['HIKING_PROJECT_KEY'] }
+  config.configure_rspec_metadata!
+end
+
 Shoulda::Matchers.configure do |config|
     config.integrate do |with|
     with.test_framework :rspec
