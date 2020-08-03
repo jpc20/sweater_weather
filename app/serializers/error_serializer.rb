@@ -20,4 +20,15 @@ class ErrorSerializer
         }
     }
   end
+
+  def location_error
+    {
+      data:
+        {
+          id: nil,
+          type:"error",
+          error_message: 'Invalid Location'
+        }
+    }
+  end
 end
