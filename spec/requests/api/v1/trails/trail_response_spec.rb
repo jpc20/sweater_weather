@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'The trails endpoint' do
   it 'retuns the forecast for a city and list of trails' do
-    get '/api/v1/forecast', params: {location: 'denver,co'}
+    get '/api/v1/trails', params: {location: 'denver,co'}
 
     expect(response).to be_successful
     expect(response.status).to eq(200)
