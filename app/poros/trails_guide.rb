@@ -1,11 +1,13 @@
 class TrailsGuide
   attr_reader :location,
               :forecast,
-              :trails
+              :trails,
+              :id
   def initialize(forecast, trails)
     @location = forecast.location
     @forecast = format_forecast(forecast)
     @trails = trails
+    @id = nil
   end
 
   private
