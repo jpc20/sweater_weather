@@ -14,7 +14,7 @@ class TrailsGuide
   def format_forecast(forecast)
     {
       summary: forecast.current[:weather].first[:description],
-      temerature: forecast.current[:temp]
+      temperature: forecast.current[:temp]
     }
   end
 end
