@@ -20,4 +20,15 @@ class ErrorSerializer
         }
     }
   end
+
+  def unauthorized_error
+    {
+      data:
+        {
+          id: nil,
+          type:"error",
+          error_message: 'Credentials are bad'
+        }
+    }
+  end
 end
