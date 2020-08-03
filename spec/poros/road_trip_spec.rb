@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'RoadTrip PORO' do
-  it 'has an origin, destination, travel_time, and forecast' do
+  it 'has an origin, destination, travel_time, and forecast', :vcr do
     from_to = {origin: "Denver, CO", destination: "Pueblo, CO"}
     directions = MapQuestResults.new.directions(from_to)
     location = MapQuestResults.new.get_coordinates(from_to[:destination])

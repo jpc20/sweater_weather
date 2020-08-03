@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Road trip endpoint' do
-  it 'returns the origin, destination, travel time, and destination forecast' do
+  it 'returns the origin, destination, travel time, and destination forecast', :vcr do
     user = create(:user)
     road_trip_body = {
                           "origin": "Denver, CO",
@@ -23,7 +23,7 @@ describe 'Road trip endpoint' do
     expect(road_trip[:data][:attributes]).to have_key(:arrival_forecast)
   end
 
-  it 'returns a 401 if no API key is sent' do
+  it 'returns a 401 if no API key is sent', :vcr do
     road_trip_body = {
                           "origin": "Denver, CO",
                           "destination": "Pueblo, CO",
