@@ -22,7 +22,7 @@ describe 'The trails endpoint' do
   end
 
   it 'retuns the forecast  and list of trails for a different city' do
-    get '/api/v1/trails', params: {location: 'san franciscpo'}
+    get '/api/v1/trails', params: {location: 'san francisco'}
 
     expect(response).to be_successful
     expect(response.status).to eq(200)
