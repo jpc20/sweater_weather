@@ -40,4 +40,15 @@ describe 'The trails endpoint' do
     expect(trails_resp[:data][:attributes][:trails].first).to have_key(:location)
     expect(trails_resp[:data][:attributes][:trails].first).to have_key(:distance_to_trail)
   end
+
+  it 'retuns a 400 for an invalid location' do
+    get '/api/v1/trails', params: {location: 'feklakmdfknweiadfmamo'}
+
+    expect(response.status).to eq(400)
+
+    error_resp = JSON.parse(response.body, symbolize_names: true)
+
+    expect(error_resp[:data][:type]).to eq('error')
+    expect(error_resp[:data][:error_message]).to eq('Invalid Location')
+  end
 end
