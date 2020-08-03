@@ -10,6 +10,7 @@ class Api::V1::SessionsController < ApplicationController
 
   private
   def user_params
-    params.permit(:email, :password)
+    JSON.parse(request.body.read, symbolize_names: true)
+        .slice(:email, :password)
   end
 end
