@@ -1,7 +1,15 @@
 class MapQuestService
   def get_coordinates(location)
-    resp = conn.get do |req|
+    resp = conn.get('/geocoding/v1/address') do |req|
       req.params['location'] = location
+    end
+    JSON.parse(resp.body, symbolize_names: true)
+  end
+
+  def directions(from_to)
+    resp = conn.get('/directions/v2/route') do |req|
+      req.params['from'] = from_to[:origin]
+      req.params['to'] = from_to[:destination]
     end
     JSON.parse(resp.body, symbolize_names: true)
   end
