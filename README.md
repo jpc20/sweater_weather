@@ -2,7 +2,7 @@
 
 ### Overview
 
-Sweater Weather is a 5-day final-project completed by [Jack Cullen](https://github.com/jpc20) in Module 3 of the back-end program at Turing School of Software and Design. It is a the back-end of a mock Road-Trip Application. It consumes the [OpenWeather API](https://openweathermap.org/api/one-call-api) and the [MapQuest API](https://developer.mapquest.com/documentation/geocoding-api/) and exposes the data consumed in an API that the front-end of this application would uses. The API also handles user registration, login, and authentication. The [Sweater Weather API](https://sweater-weather-jpc20.herokuapp.com/api/v1/forecast?location=denver) is deployed to Heroku and uses Travis CI for continuous integration and deployment.
+Sweater Weather is a 5-day final-project completed by [Jack Cullen](https://github.com/jpc20) in Module 3 of the back-end program at Turing School of Software and Design. It is a the back-end of a mock Road-Trip Application. It consumes the [OpenWeather API](https://openweathermap.org/api/one-call-api) and the [MapQuest API](https://developer.mapquest.com/documentation/geocoding-api/) and exposes the data consumed in an API that the front-end of this application would use. This API also handles user registration, login, and authentication. The [Sweater Weather API](https://sweater-weather-jpc20.herokuapp.com/api/v1/forecast?location=denver) is deployed to Heroku and uses Travis CI for continuous integration and deployment.
 
 ### Setup
 
