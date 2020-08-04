@@ -4,7 +4,7 @@ class Api::V1::RoadTripController < ApplicationController
     if user
       render json: RoadTripSerializer.new(road_trip(from_to))
     else
-      render json: ErrorSerializer.new.unauthorized_error, status: :unauthorized
+      render json: ErrorSerializer.new.error('Credentials are bad'), status: :unauthorized
     end
   end
 

@@ -38,4 +38,21 @@ describe 'Road trip endpoint' do
     expect(error_response[:data][:type]).to eq('error')
     expect(error_response[:data][:error_message]).to eq('Credentials are bad')
   end
+
+  it 'returns a 401 if an incorrect API key is sent', :vcr do
+    road_trip_body = {
+                          "origin": "Denver, CO",
+                          "destination": "Pueblo, CO",
+                          'api_key': SecureRandom.uuid
+                      }
+    post '/api/v1/road_trip', params: road_trip_body.to_json, headers: { "CONTENT_TYPE" => "application/json" }
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(401)
+
+    error_response = JSON.parse(response.body, symbolize_names: true)
+
+    expect(error_response[:data][:type]).to eq('error')
+    expect(error_response[:data][:error_message]).to eq('Credentials are bad')
+  end
 end

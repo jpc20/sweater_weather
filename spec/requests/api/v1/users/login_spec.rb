@@ -3,11 +3,11 @@ require 'rails_helper'
 describe 'users login endpoint' do
   it 'returns a user response with an id, email, and api_key' do
     user = create(:user, password: '12345')
-    user_params = {
+    user_body = {
                     "email": user.email,
-                    "password": "12345",
+                    "password": "12345"
                   }
-    post '/api/v1/sessions', params: user_params
+    post '/api/v1/sessions', params: user_body.to_json, headers: { "CONTENT_TYPE" => "application/json" }
 
     expect(response).to be_successful
     expect(response.status).to eq(200)
@@ -21,11 +21,11 @@ describe 'users login endpoint' do
 
   it 'returns a 400 if it fails to authenticate' do
     user = create(:user, password: '12345')
-    user_params = {
+    user_body = {
                     "email": user.email,
-                    "password": "wrong_password",
+                    "password": "wrong_password"
                   }
-    post '/api/v1/sessions', params: user_params
+    post '/api/v1/sessions', params: user_body.to_json, headers: { "CONTENT_TYPE" => "application/json" }
 
     expect(response).to_not be_successful
     expect(response.status).to eq(400)

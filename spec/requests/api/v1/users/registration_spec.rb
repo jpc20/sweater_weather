@@ -2,12 +2,12 @@ require 'rails_helper'
 
 describe 'users endpoint' do
   it 'returns a user response with an id, email, and api_key' do
-    user_params = {
+    user_body = {
                     "email": "whatever@example.com",
                     "password": "password",
                     "password_confirmation": "password"
                   }
-    post '/api/v1/users', params: user_params
+    post '/api/v1/users', params: user_body.to_json, headers: { "CONTENT_TYPE" => "application/json" }
 
     expect(response).to be_successful
     expect(response.status).to eq(201)
@@ -20,12 +20,12 @@ describe 'users endpoint' do
   end
 
   it 'returns a 400 and description of failure for password_confirmation not matching' do
-    user_params = {
+    user_body = {
                     "email": "whatever@example.com",
                     "password": "password",
                     "password_confirmation": "different_password"
                   }
-    post '/api/v1/users', params: user_params
+    post '/api/v1/users', params: user_body.to_json, headers: { "CONTENT_TYPE" => "application/json" }
 
     expect(response.status).to eq(400)
 
@@ -36,12 +36,12 @@ describe 'users endpoint' do
 
   it 'returns a 400 and description of failure for email being taken' do
     create(:user, email: "whatever@example.com")
-    user_params = {
+    user_body = {
                     "email": "whatever@example.com",
                     "password": "password",
                     "password_confirmation": "password"
                   }
-    post '/api/v1/users', params: user_params
+    post '/api/v1/users', params: user_body.to_json, headers: { "CONTENT_TYPE" => "application/json" }
 
     expect(response.status).to eq(400)
 
@@ -51,12 +51,12 @@ describe 'users endpoint' do
   end
 
   it 'returns a 400 and description of failure for missing fields' do
-    user_params = {
+    user_body = {
                     "email": "",
                     "password": "password",
                     "password_confirmation": "password"
                   }
-    post '/api/v1/users', params: user_params
+    post '/api/v1/users', params: user_body.to_json, headers: { "CONTENT_TYPE" => "application/json" }
 
     expect(response.status).to eq(400)
 
