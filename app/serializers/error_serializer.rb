@@ -1,33 +1,11 @@
 class ErrorSerializer
-  def registration_error(user)
+  def error(message)
     {
       data:
         {
           id: nil,
           type:"error",
-          error_message: user.errors.full_messages.to_sentence
-        }
-    }
-  end
-
-  def login_error
-    {
-      data:
-        {
-          id: nil,
-          type:"error",
-          error_message: 'Credentials are bad'
-        }
-    }
-  end
-
-  def unauthorized_error
-    {
-      data:
-        {
-          id: nil,
-          type:"error",
-          error_message: 'Credentials are bad'
+          error_message: message
         }
     }
   end
