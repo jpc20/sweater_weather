@@ -43,7 +43,7 @@ Rspec was used to test all of the endpoints. This includes sad path testing for 
 
 ### Endpoints
 
-All endpoints can be reached by running a local host `rails s` and navigating to `http://localhost:3000/` or by using the URL deployed to Heroku `https://sweater-weather-jpc20.herokuapp.com/`
+All endpoints can be reached by running  `rails server` and navigating to `http://localhost:3000/` or by using the URL deployed to Heroku `https://sweater-weather-jpc20.herokuapp.com/`
 
 #### Get the forecast for a city
 
