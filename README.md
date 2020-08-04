@@ -245,3 +245,128 @@ body:
   }
 }
 ```
+
+### Error Handling
+
+#### User Registration
+
+Passwords Don't Match:
+
+```
+POST /api/v1/users
+Content-Type: application/json
+Accept: application/json
+
+{
+  "email": "whatever@example.com",
+  "password": "password"
+  "password_confirmation": "different_password"
+}
+```
+
+Response:
+
+```
+status: 400
+body:
+
+{
+  :data=>
+    {:id=>nil,
+      :type=>"error",
+      :error_message=>"Password confirmation doesn't match Password"
+    }
+  }
+```
+
+Missing Required Fields:
+
+```
+POST /api/v1/users
+Content-Type: application/json
+Accept: application/json
+
+{
+  "email": "",
+  "password": "password"
+  "password_confirmation": "different_password"
+}
+```
+
+Response:
+
+```
+status: 400
+body:
+
+{
+  :data=>
+    {:id=>nil,
+      :type=>"error",
+      :error_message=>"Email can't be blank"
+    }
+  }
+```
+
+#### User Login
+
+Wrong Password:
+
+```
+POST /api/v1/sessions
+Content-Type: application/json
+Accept: application/json
+
+{
+  "email": "whatever@example.com",
+  "password": "wrong_password"
+}
+```
+
+Response:
+
+```
+status: 400
+body:
+
+{
+  :data=>
+    {:id=>nil,
+      :type=>"error",
+      :error_message=>"Credentials are bad"
+    }
+  }
+```
+
+#### Road Trip
+
+Incorrect API key:
+
+```
+POST /api/v1/road_trip
+Content-Type: application/json
+Accept: application/json
+
+body:
+
+{
+  "origin": "Denver,CO",
+  "destination": "Pueblo,CO",
+  "api_key": "wrong_key"
+}
+```
+
+Response:
+
+```
+status: 401
+body:
+
+{
+  :data=>
+    {:id=>nil,
+      :type=>"error",
+      :error_message=>"Credentials are bad"
+    }
+  }
+```
